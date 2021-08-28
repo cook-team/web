@@ -193,10 +193,11 @@
 				// this.alreadyBalance = await this.contract.balanceOf(this.address).call();
 				// this.alreadyBalance = parseFloat(this.alreadyBalance / pools.pools[this.$route.params.index].decimals).toFixed(4);
 				this.refReward = await this.contract.getReferralRewards(this.address).call();
-				
+				console.log('111',this.refReward)
 				this.refReward = parseFloat(this.refReward / pools.pools[this.$route.params.index].productDecimal).toFixed(5);
+				console.log('222',this.refReward)
 				this.refReward = this.refReward.substring(0,this.refReward.lastIndexOf('.')+5)
-				
+				console.log('333',this.refReward)
 				// console.log(this.contract)
 
 				let periodFinish = await this.contract.periodFinish().call();
@@ -221,9 +222,9 @@
 				// this.refReward = parseFloat(this.refReward / pools.pools[this.$route.params.index].productDecimal).toFixed(3);
 				this.timer = setInterval(async () => {
 					this.earned = await this.contract.earned(this.address).call();
-					this.earned = parseFloat(this.earned / pools.pools[this.$route.params.index].productDecimal).toFixed(4);
+					pools.pools[this.$route.params.index].productDecimal && (this.earned = parseFloat(this.earned / pools.pools[this.$route.params.index].productDecimal).toFixed(4));
 					this.alreadyBalance = await this.contract.balanceOf(this.address).call();
-					this.alreadyBalance = parseFloat(this.alreadyBalance / pools.pools[this.$route.params.index].decimals).toFixed(5);
+					pools.pools[this.$route.params.index].productDecimal && (this.alreadyBalance = parseFloat(this.alreadyBalance / pools.pools[this.$route.params.index].decimals).toFixed(5));
 					this.alreadyBalance = this.alreadyBalance.substring(0,this.alreadyBalance.lastIndexOf('.')+5)
 					// this.refReward = await this.contract.getReferralRewards(this.address).call();
 					// this.refReward = parseFloat(this.refReward / pools.pools[this.$route.params.index].productDecimal).toFixed(3);
