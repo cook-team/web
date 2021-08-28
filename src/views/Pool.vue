@@ -221,13 +221,15 @@
 				// this.refReward = await this.contract.getReferralRewards(this.address).call();
 				// this.refReward = parseFloat(this.refReward / pools.pools[this.$route.params.index].productDecimal).toFixed(3);
 				this.timer = setInterval(async () => {
-					this.earned = await this.contract.earned(this.address).call();
-					pools.pools[this.$route.params.index].productDecimal && (this.earned = parseFloat(this.earned / pools.pools[this.$route.params.index].productDecimal).toFixed(4));
-					this.alreadyBalance = await this.contract.balanceOf(this.address).call();
-					pools.pools[this.$route.params.index].productDecimal && (this.alreadyBalance = parseFloat(this.alreadyBalance / pools.pools[this.$route.params.index].decimals).toFixed(5));
-					this.alreadyBalance = this.alreadyBalance.substring(0,this.alreadyBalance.lastIndexOf('.')+5)
-					// this.refReward = await this.contract.getReferralRewards(this.address).call();
-					// this.refReward = parseFloat(this.refReward / pools.pools[this.$route.params.index].productDecimal).toFixed(3);
+					if(this.$route.params.index) { // 路由没有传参就不请求
+						this.earned = await this.contract.earned(this.address).call();
+						this.earned = parseFloat(this.earned / pools.pools[this.$route.params.index].productDecimal).toFixed(4);
+						this.alreadyBalance = await this.contract.balanceOf(this.address).call();
+						this.alreadyBalance = parseFloat(this.alreadyBalance / pools.pools[this.$route.params.index].decimals).toFixed(5);
+						this.alreadyBalance = this.alreadyBalance.substring(0,this.alreadyBalance.lastIndexOf('.')+5)
+						// this.refReward = await this.contract.getReferralRewards(this.address).call();
+						// this.refReward = parseFloat(this.refReward / pools.pools[this.$route.params.index].productDecimal).toFixed(3);
+					}
 				}, 1000)
 			},
 			async approve() {
@@ -496,9 +498,9 @@
 					
 					this.tronWeb = new TronWeb({
 						// fullHost: 'http://210.56.55.28:41752', // 另外一个地址
-						fullHost: 'http://cook.vin/api', // 正式环境
-						// fullHost: 'https://api.trongrid.io', //测试环境
-						// headers: { "TRON-PRO-API-KEY": 'd0ca3dfb-5123-4f1d-bf45-22f949388042' },//测试环境
+						// fullHost: 'http://cook.vin/api', // 正式环境
+						fullHost: 'https://api.trongrid.io', //测试环境
+						headers: { "TRON-PRO-API-KEY": 'd0ca3dfb-5123-4f1d-bf45-22f949388042' },//测试环境
 					})
 					this.tronWeb.setAddress(tronWeb.defaultAddress.base58);
 
