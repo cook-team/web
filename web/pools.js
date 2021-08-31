@@ -1,6 +1,7 @@
 var pools = {
     logo: '/img/logo.b00e9a89.png',
-    domain: 'http://cook.tel', // 域名    正式： http://cook.vin  测试：http://cook.tel
+    domain: 'http://cook.tel', // 域名 
+    pointApi: 'http://cook.tel/api', //节点地址  正式： http://cook.vin/api  测试：http://cook.tel/api 
     produceCoin: 'TDJmWtVu4VeoepMpsaDzPd1ZtnKC7EbBNf',//产出币地址^M
     decimals: 1e6,
     produceCoinImage: '/img/cook.png',
