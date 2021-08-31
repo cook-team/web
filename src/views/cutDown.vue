@@ -1,10 +1,10 @@
 <template>
-	<div class="timeTxt">
-		<p>{{day}}天</p>
-		<p>{{hour}}时</p>
-		<p>{{minte}}分</p>
-		<p>{{second}}秒</p>
-	</div>
+	<span class="timeTxt">
+		<span>{{day}}天</span>
+		<span>{{hour}}时</span>
+		<span>{{minte}}分</span>
+		<span>{{second}}秒</span>
+	</span>
 </template>
 
 <script>
@@ -56,10 +56,9 @@
 
 <style scoped="">
 	.timeTxt {
-		display: flex;
-		align-items: center;
+		
 	}
-	.timeTxt p {
+	.timeTxt span {
 		font-size: 14px;
 		font-family: Microsoft YaHei;
 		font-weight: bold;
