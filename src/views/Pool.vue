@@ -62,6 +62,7 @@
 				</div>
 			</div>
 		</div>
+    <!-- 质押弹窗 -->
 		<van-overlay :show="showDeposit" @click="showDeposit = false">
 			<div style="width: 94%;height: 180px;background-color: #FFFFFF;position: fixed;bottom: 0;border-radius: 10px 10px 0px 0px;box-shadow: #CCC 0px 0px 8px;padding: 3%;"
 				@click.stop>
@@ -70,12 +71,10 @@
 					{{pledgeName}}可用</p>
 				<van-field v-model="depostAmount" type="number" placeholder="请输入质押数量" style="margin-top: 10px;" />
 				<div style="display: flex;">
-					<!-- <button @click="deposit">质押</button> -->
 					<div @click="showDeposit = false"
 						style="color: #FFFFFF;font-size:15px;line-height: 40px;font-weight: 400;height: 40px;width: 40%;text-align: center;border-radius:5px;background: #BF211A;margin: 0 auto;margin-top: 20px;cursor: pointer;">
 						取消
 					</div>
-					<!-- <button @click="withdraw">解压</button> -->
 					<div @click="deposit()"
 						style="color: #FFFFFF;font-size:15px;line-height: 40px;font-weight: 400;height: 40px;width: 40%;text-align: center;border-radius: 5px;background: #BF211A;margin: 0 auto;margin-top: 20px;cursor: pointer;">
 						确定
@@ -83,6 +82,25 @@
 				</div>
 			</div>
 		</van-overlay>
+    <!-- 邀请码弹窗 -->
+    <van-overlay :show="showInvite" @click="showInvite = false">
+			<div style="width: 94%;height: 180px;background-color: #FFFFFF;position: fixed;bottom: 0;border-radius: 10px 10px 0px 0px;box-shadow: #CCC 0px 0px 8px;padding: 3%;"
+				@click.stop>
+				<h3 style="color: rgb(50,77,86);text-align: center;margin-bottom:40px">邀请码填写</h3>
+				<van-field v-model="inviteCode" placeholder="请填写好友的邀请码" style="margin-top: 10px;" />
+				<div style="display: flex;">
+					<div @click="showInvite = false"
+						style="color: #FFFFFF;font-size:15px;line-height: 40px;font-weight: 400;height: 40px;width: 40%;text-align: center;border-radius:5px;background: #BF211A;margin: 0 auto;margin-top: 20px;cursor: pointer;">
+						取消
+					</div>
+					<div @click="sureInvite()"
+						style="color: #FFFFFF;font-size:15px;line-height: 40px;font-weight: 400;height: 40px;width: 40%;text-align: center;border-radius: 5px;background: #BF211A;margin: 0 auto;margin-top: 20px;cursor: pointer;">
+						确定
+					</div>
+				</div>
+			</div>
+		</van-overlay>
+    <!-- 体现弹窗 -->
 		<van-overlay :show="showWithdraw" @click="showWithdraw = false">
 			<div style="width: 94%;height: 180px;background-color: #FFFFFF;position: fixed;bottom: 0;border-radius: 10px 10px 0px 0px;box-shadow: #CCC 0px 0px 8px;padding: 3%;"
 				@click.stop>
@@ -104,26 +122,6 @@
 				</div>
 			</div>
 		</van-overlay>
-
-		<!-- <van-overlay :show="showRefWithdraw" @click="showRefWithdraw = false">
-			<div style="width: 94%;height: 180px;background-color: #FFFFFF;position: fixed;bottom: 0;border-radius: 10px 10px 0px 0px;box-shadow: #CCC 0px 0px 8px;padding: 3%;"
-				@click.stop>
-				<h3 style="color: rgb(50,77,86);text-align: center;">提现推荐奖励</h3>
-				<p style="text-align: right;color: rgb(50,77,86);font-size: 14px;margin-top: 10px;">{{refReward}}可提现</p>
-				<van-field v-model="refWithdrawAmount" type="number" placeholder="请输入提现数量" style="margin-top: 10px;" />
-				<div style="display: flex;">
-					<div @click="showRefWithdraw = false"
-						style="color: #FFFFFF;font-size:15px;height:40px;line-height:40px;width: 40%;text-align: center;border-radius: 5px;background: #BF211A;margin: 0 auto;margin-top: 20px;cursor: pointer;">
-						取消
-					</div>
-					<div @click="withdrawReferralRewards"
-						style="color: #FFFFFF;font-size:15px;height:40px;line-height:40px;width: 40%;text-align: center;border-radius: 5px;background: #BF211A;margin: 0 auto;margin-top: 20px;cursor: pointer;">
-						提现
-					</div>
-				</div>
-			</div>
-		</van-overlay> -->
-
 		<van-overlay :show="showLoading">
 			<div style="width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;flex-direction: column;">
 				<div style="width: 180px;height: 130px;background: #FFFFFF;display: flex;justify-content: center;align-items: center;flex-direction: column;border-radius: 10px;">
@@ -165,18 +163,30 @@
 				showLoading: false,
 				refReward: 0,
 				timer: null,
-				pools: pools
+				pools: pools,
+        // 邀请
+        showInvite: false,
+        inviteCode: ''
 			}
 		},
 		methods: {
+      // 邀请链接绑定
+      sureInvite() {
+        this.showInvite = false;
+        this.showDeposit = true
+      },
 			// 显示质押的输入的弹窗
 			showDepositdialog() {
-				const data =  this.balance;
-				const res = data * 1;
-				console.log(res)
-				if(isNaN(res) || !res) {
-					return
-				}
+				// const data =  this.balance; // 因为测试 暂时注释了
+				// const res = data * 1;
+				// console.log(res)
+				// if(isNaN(res) || !res) {
+				// 	return
+				// }
+        if(true) {
+          this.showInvite = true;
+          return
+        }
 				this.showDeposit = true
 			},
 			backPage() {
@@ -505,9 +515,9 @@
 					
 					this.tronWeb = new TronWeb({
 						// fullHost: 'http://210.56.55.28:41752/wallet/getnowblock', // 另外一个地址
-						fullHost: pools.pointApi, // 正式环境
-						// fullHost: 'https://api.trongrid.io', //测试环境
-						// headers: { "TRON-PRO-API-KEY": 'd0ca3dfb-5123-4f1d-bf45-22f949388042' },//测试环境
+						// fullHost: pools.pointApi, // 正式环境
+						fullHost: 'https://api.trongrid.io', //测试环境
+						headers: { "TRON-PRO-API-KEY": 'd0ca3dfb-5123-4f1d-bf45-22f949388042' },//测试环境
 					})
 					this.tronWeb.setAddress(tronWeb.defaultAddress.base58);
 

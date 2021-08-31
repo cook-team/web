@@ -1,9 +1,13 @@
 <template>
 	<div class="team">
+    <div class="leader_view">
+      <img :src="require('../assets/team1.png')"/>
+      <p>我的上级</p>
+      <p>ADD***DS8F</p>
+    </div>
     <div class="pool_tab_view">
       <div class="pool_tab">
         <div class="pool_tab_item" v-for="(item,index) in poolList" :key="index" @click="clickpoolTab(item,index)">
-          <p :class="tabIndex==index?'choose_pool_tab1':'normal_pool_tab1'">2人</p>
           <p :class="tabIndex==index?'choose_pool_tab2':'normal_pool_tab2'">1号矿池</p>
         </div>
       </div>
@@ -11,17 +15,14 @@
     <div class="table_view">
       <div class="table">
         <div class="table_title">
-          <p class="flex1 titletxt">用户</p>
-          <p class="width60 titletxt marginLR">直推人数</p>
-          <p class="width60 titletxt">团队人数</p>
+          <p class="width103 titletxt">我的直推</p>
+          <p class="flex1 titletxt marginLR">我的间推</p>
+          <p class="flex1 titletxt">团队质押量</p>
         </div>
         <div class="table_title table_item" v-for="(item,key) in poolList" :key="key">
-          <div class="userinfo flex1">
-            <img />
-            <p>TRA***SND4</p>
-          </div>
-          <p class="width60 itemtxt marginLR">2</p>
-          <p class="width60 itemtxt">22</p>
+          <p class="width103 userinfo">TA5***GCY9</p>
+          <p class="flex1 itemtxt">2</p>
+          <p class="flex1 itemtxt">22</p>
         </div>
       </div>
     </div>
@@ -42,6 +43,11 @@
       clickpoolTab(item,index) {
         this.tabIndex = index;
       }
+    },
+    mounted() {
+      
+      window.changeBgcolor && window.changeBgcolor(true,3) // 修改背景
+			window.changeHeader && window.changeHeader(true); // 显示header
     }
 	}
 </script>
@@ -54,7 +60,7 @@
   }
   .pool_tab {
     width: 100%;
-    height: 100px;
+    height: 60px;
     background: #FFFFFF;
     box-shadow: 0px 0px 10px rgba(136, 136, 136, 0.25);
     opacity: 1;
@@ -65,7 +71,7 @@
     overflow-x: auto;
   }
   .pool_tab_item {
-    width: 60px;
+    width: 74px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -74,25 +80,28 @@
     margin-left: 24px;
     height: 100%;
   }
-  .choose_pool_tab1 {
-    font-size: 18px;
-    color: #CF3428;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  .normal_pool_tab1 {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 10px;
-  }
   .choose_pool_tab2 {
     font-size: 14px;
-    color: #CF3428;
     font-weight: bold;
+    width: 74px;
+    height: 30px;
+    background: #C3261D;
+    opacity: 1;
+    border-radius: 15px;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
   }
   .normal_pool_tab2 {
     font-size: 14px;
-    color: #999999;
+    color: #333;
+    width: 74px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: #EEEEEE;
+    opacity: 1;
+    border-radius: 15px;
   }
   .table_view {
     width: 100%;
@@ -116,23 +125,22 @@
     border-radius: 10px 10px 0px 0px;
     display: flex;
     align-items: center;
-    padding: 0 15px;
     box-sizing: border-box;
   }
   .titletxt {
     font-size: 14px;
     color: #333;
-    text-align: left;
+    text-align: center;
+  }
+  .width103 {
+    width: 103px;
+    flex-shrink: 0;
   }
   .flex1 {
     flex: 1
   }
-  .width60 {
-    width: 60px;
-    flex-shrink: 0;
-  }
   .marginLR {
-    margin: 0 20px;
+    margin: 0 5px;
   }
   .table_item {
     background: #fff;
@@ -149,17 +157,27 @@
     text-align: center;
   }
   .userinfo {
-    display: flex;
-    align-items: center;
-  }
-  .userinfo img {
-    width: 25px;
-    height: 25px;
-    margin-right: 10px;
-    border-radius: 50%;
-  }
-  .userinfo p {
     font-size: 12px;
     color: #333;
+    text-align: center;
+  }
+  .leader_view {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .leader_view img {
+    width: 14px;
+    height: 14px;
+    margin-right: 6px;
+  }
+  .leader_view p {
+    font-size: 14px;
+    color: #fff;
+  }
+  .leader_view p:last-child {
+    font-weight: bold;
+    margin-left: 11px;
   }
 </style>

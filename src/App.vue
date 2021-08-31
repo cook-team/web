@@ -98,7 +98,14 @@ export default {
   },
   mounted() {
     this.parent = this.$route.query.ref;
-    this.changeBg(this.$route.name !== "pool");
+    let tabNum = 1;
+    console.log('>>',this.$route.name)
+    if(this.$route.name=='Pools') {
+      tabNum =2;
+    } else if(this.$route.name=='Team') {
+      tabNum = 3
+    }
+    this.changeBg(this.$route.name !== "pool",tabNum);
     const self = this;
     window.changeBgcolor = function (val, tab) {
       self.changeBg(val, tab);
@@ -111,11 +118,11 @@ export default {
       if (typeof tronWeb !== "undefined") {
         this.tronWeb = new TronWeb({
           // fullHost: 'http://210.56.55.28:41752/wallet/getnowblock', // 另外一个地址
-          fullHost: pools.pointApi, // 正式环境
-          // fullHost: "https://api.trongrid.io", //测试环境
-          // headers: {
-          //   "TRON-PRO-API-KEY": "d0ca3dfb-5123-4f1d-bf45-22f949388042",
-          // }, //测试环境
+          // fullHost: pools.pointApi, // 正式环境
+          fullHost: "https://api.trongrid.io", //测试环境
+          headers: {
+            "TRON-PRO-API-KEY": "d0ca3dfb-5123-4f1d-bf45-22f949388042",
+          }, //测试环境
         });
         this.tronWeb.setAddress(tronWeb.defaultAddress.base58);
 
@@ -162,6 +169,7 @@ export default {
       window.location.href = this.tronScanUrl;
     },
     changeBg(type, tab) {
+      console.log(tab)
       this.isIndex = type;
       if (tab) {
         this.tab = tab;

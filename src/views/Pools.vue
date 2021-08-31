@@ -142,7 +142,7 @@
 			}
 		},
 		async mounted() {
-			window.changeBgcolor && window.changeBgcolor(true) // 修改背景
+			window.changeBgcolor && window.changeBgcolor(true,2) // 修改背景
 			window.changeHeader && window.changeHeader(true); // 显示header
 			// var timer = setInterval(async () => {
 			// 	if (typeof tronWeb !== 'undefined') {
