@@ -71,9 +71,8 @@
 					<span style="font-size: 12px;color: rgb(50, 77, 86);margin-top: -10px;">邀请好友来挖矿你可以获得他收益10%的奖励</span>
 				</div>
 				
-				<div id="text"
-					style="border-radius: 1px;height:34px;line-height:34px;border: 1px solid #ccc;overflow: hidden;white-space: normal;word-break: break-all;font-size: 14px;margin-top: 8px;">
-					{{refLink}}
+				<div class="copylinkView"  id="text">
+					{{refLink1}}
 				</div>
 				<div ref="copy" data-clipboard-action="copy" data-clipboard-target="#text" @click="copyLink"
 					class="copyBtn">
@@ -105,7 +104,7 @@
 				copyBtn: null,
 				balance: 0,
 				parent: '',
-				refLink: '',
+				refLink1: '',
 				unfinishedIncome: 0,
 				allRefReward: 0,
 				allStock: 0,
@@ -136,10 +135,10 @@
 					}
 					// tronWeb.setHeader({"TRON-PRO-API-KEY": '0d54d84d-70f6-49b5-bd0c-83a286592f88'});
 					this.tronWeb = new TronWeb({
-						// fullHost: 'http://210.56.55.28:41752', // 另外一个地址
-						// fullHost: 'http://cook.vin/api', // 正式环境
-						fullHost: 'https://api.trongrid.io', //测试环境
-						headers: { "TRON-PRO-API-KEY": 'd0ca3dfb-5123-4f1d-bf45-22f949388042' },//测试环境
+						// fullHost: 'http://210.56.55.28:41752/wallet/getnowblock', // 另外一个地址
+						fullHost: pools.pointApi, // 正式环境
+						// fullHost: 'https://api.trongrid.io', //测试环境
+						// headers: { "TRON-PRO-API-KEY": 'd0ca3dfb-5123-4f1d-bf45-22f949388042' },//测试环境
 					})
 					this.tronWeb.setAddress(tronWeb.defaultAddress.base58);
 					
@@ -149,9 +148,7 @@
 					this.balance = await coinContract.balanceOf(tronWeb.defaultAddress.base58).call()
 					this.balance = parseFloat(this.balance / pools.decimals).toFixed(5)
 					this.balance = this.balance.substring(0,this.balance.lastIndexOf('.')+5)
-
-					this.refLink = pools.domain + '?ref=' + tronWeb.defaultAddress.base58;
-
+					this.refLink1 = `${pools.domain}`
 					this.getData();
 					await this.getStock();
 					this.showLoading = false
@@ -328,5 +325,23 @@
 		text-align: center;
 		margin: auto;
 		margin-top: 20px;
+	}
+	.copylinkView {
+		border-radius: 1px;
+		height:34px;
+		line-height:34px;
+		border: 1px solid #ccc;
+		overflow: hidden;
+		white-space: normal;
+		word-break: break-all;
+		font-size: 14px;
+		margin-top: 8px;
+		position: relative;
+	}
+	.copylinkView_hide {
+		position: absolute;
+		left: 0;
+		top: 0;
+		opacity: 0;
 	}
 </style>

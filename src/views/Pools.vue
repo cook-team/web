@@ -33,15 +33,15 @@
 				</div>
 				<div class="poolNumView">
 					<div style="font-size: 16px;text-align: center;">矿池存量:</div>
-					<h4 style="text-align: center;font-size:28px;font-weight:bold;line-height: 37px;">{{(pool.total - pool.stock).toFixed(4)}}</h4>
+					<h4 style="text-align: center;font-size:28px;font-weight:bold;line-height: 37px;">{{showendTime(pool)==3?0:(pool.total - pool.stock).toFixed(4)}}</h4>
 				</div>
 				<!-- <div style="text-align: center;font-size: 16px;color: red;margin-top: 5px;font-weight: bold;">{{pool.total - pool.stock == pool.total ? "未开始" : pool.total - pool.stock == 0 ? "已结束" : "出矿中"}}</div> -->
 				<div class="poolStatusView">
 					<p v-if="showendTime(pool)==1">挖矿还没有开始</p>
 					<div v-if="showendTime(pool)==2" class="cutdownView">
-						<p>正在产矿中：</p>
+						<span>正在产矿中：</span>
 						<cutDown :time="pool.endTime" @onEnd="endFnc" :poolIndex="index"/>
-						<p>之后挖完</p>
+						<span>之后挖完</span>
 					</div>
 					<p v-if="showendTime(pool)==3">挖矿已经结束了</p>
 				</div>
@@ -218,9 +218,9 @@
 		text-align: center;
 	}
 	.cutdownView {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		margin-top: 15px;
+    font-size: 14px;
+    font-weight: bold;
 	}
 	.poolItemNumView {
 		width: 100%;

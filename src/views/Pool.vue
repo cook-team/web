@@ -183,13 +183,17 @@
 				this.$router.go(-1)
 			},
 			async getData() {
+				console.log('第一行getdata函数')
 				// this.balance = await this.trc20.balanceOf(this.address).call();
 				let balanceRes = await tronWeb.transactionBuilder.triggerConstantContract(this.pledgeAddress,"balanceOf(address)", {},[{type:'address',value:this.address}],this.address);
+				console.log('balanceRes')
 				let res = balanceRes.constant_result[0]
 				this.balance = await this.decodeParams(['uint256'],"0x"+res, true)
+				console.log('this.balance')
 				// console.log(this.balance)
 				this.balance = parseFloat(this.balance / pools.pools[this.$route.params.index].decimals).toFixed(5);
 				this.balance = this.balance.substring(0,this.balance.lastIndexOf('.')+5)
+				console.log('this.balance',this.balance)
 				// this.alreadyBalance = await this.contract.balanceOf(this.address).call();
 				// this.alreadyBalance = parseFloat(this.alreadyBalance / pools.pools[this.$route.params.index].decimals).toFixed(4);
 				this.refReward = await this.contract.getReferralRewards(this.address).call();
@@ -229,8 +233,11 @@
 						this.alreadyBalance = this.alreadyBalance.substring(0,this.alreadyBalance.lastIndexOf('.')+5)
 						// this.refReward = await this.contract.getReferralRewards(this.address).call();
 						// this.refReward = parseFloat(this.refReward / pools.pools[this.$route.params.index].productDecimal).toFixed(3);
+					} else {
+						console.log('clear')
+						clearInterval(this.timer)
 					}
-				}, 1000)
+				}, 2000)
 			},
 			async approve() {
 				try {
@@ -497,10 +504,10 @@
 					this.autoContract = await tronWeb.contract().at(this.contractAddress);
 					
 					this.tronWeb = new TronWeb({
-						// fullHost: 'http://210.56.55.28:41752', // 另外一个地址
-						// fullHost: 'http://cook.vin/api', // 正式环境
-						fullHost: 'https://api.trongrid.io', //测试环境
-						headers: { "TRON-PRO-API-KEY": 'd0ca3dfb-5123-4f1d-bf45-22f949388042' },//测试环境
+						// fullHost: 'http://210.56.55.28:41752/wallet/getnowblock', // 另外一个地址
+						fullHost: pools.pointApi, // 正式环境
+						// fullHost: 'https://api.trongrid.io', //测试环境
+						// headers: { "TRON-PRO-API-KEY": 'd0ca3dfb-5123-4f1d-bf45-22f949388042' },//测试环境
 					})
 					this.tronWeb.setAddress(tronWeb.defaultAddress.base58);
 

@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Pools from '../views/Pools.vue'
 import Pool from '../views/Pool.vue'
-
+import Team from '../views/Team.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -20,10 +20,12 @@ const routes = [
   {
     path: '/pool/:index',
     name: 'Pool',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: Pool,
+  },
+  {
+    path: '/team',
+    name: 'Team',
+    component: Team,
   }
 ]
 
