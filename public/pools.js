@@ -50,7 +50,24 @@ var pools = {
         total: 0, //总量
         startTime: '2021/08/11 22:00:00', // 开始时间
         endTime: '2021/09/10 22:00:00',  // 距离结束 年月日请尽量使用 '/'来隔开（2021/07/28），不然有可能ios端会无法解析格式
-    }]
+    },
+    {
+      name: '测试矿池',
+      pledgeAddress: 'TVG6vbBjPx71YXhYXxcqc9frsDKfk2i9i2', //质押币地址
+      mine: 'TYegMum8P5pgREG4BsnNTdivBuqzpiGcsU', //池子地址^M
+      productDecimal: 1e18, // 产出币的精度
+      mineImage: '/img/trx.jpg',
+      pledgeName: '测试cook', //质押币名称^M
+      productName: '测试cook',
+      decimals: 1e6,
+      pledgeImage: '/img/hxb.png', // 质押币图标
+      productImage: '/img/tbk.png', // 产出币的图片
+      stock: 0, // 余量
+      total: 0, //总量
+      startTime: '2021/08/11 22:00:00', // 开始时间
+      endTime: '2021/09/10 22:00:00',  // 距离结束 年月日请尽量使用 '/'来隔开（2021/07/28），不然有可能ios端会无法解析格式
+    }
+  ]
 }
 
 // 文字以及其他配置内容

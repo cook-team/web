@@ -8,7 +8,7 @@
     <div class="pool_tab_view">
       <div class="pool_tab">
         <div class="pool_tab_item" v-for="(item,index) in poolList" :key="index" @click="clickpoolTab(item,index)">
-          <p :class="tabIndex==index?'choose_pool_tab2':'normal_pool_tab2'">1号矿池</p>
+          <p :class="tabIndex==index?'choose_pool_tab2':'normal_pool_tab2'">{{index+1}}号矿池</p>
         </div>
       </div>
     </div>
@@ -35,19 +35,32 @@
 		name: 'Pools',
 		data() {
 			return {
-        poolList: [1,2,3,4,5,6,7,8,9,10],
-        tabIndex: 0
+        poolList: pools.pools,
+        tabIndex: 0,
+
 			}
 		},
 		methods: {
       clickpoolTab(item,index) {
-        this.tabIndex = index;
+        if(index!== this.tabIndex) {
+          this.tabIndex = index;
+          this.getTableInfo(index);
+        }
+      },
+      //  获取推荐信息
+      async getTableInfo(index) {
+        const poolAddress = await pools.pools[index].mine;
+        console.log('poolAddress',poolAddress)
+        const contract  = await tronWeb.contract().at(poolAddress);
+        console.log('contract',contract)
+        const data = contract.getRecommend(tronWeb.defaultAddress.base58);
+        console.log('数据',data)
       }
     },
     mounted() {
-      
       window.changeBgcolor && window.changeBgcolor(true,3) // 修改背景
 			window.changeHeader && window.changeHeader(true); // 显示header
+      this.getTableInfo(0);
     }
 	}
 </script>
