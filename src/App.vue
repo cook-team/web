@@ -98,7 +98,14 @@ export default {
   },
   mounted() {
     this.parent = this.$route.query.ref;
-    this.changeBg(this.$route.name !== "pool");
+    let tabNum = 1;
+    console.log('>>',this.$route.name)
+    if(this.$route.name=='Pools') {
+      tabNum =2;
+    } else if(this.$route.name=='Team') {
+      tabNum = 3
+    }
+    this.changeBg(this.$route.name !== "pool",tabNum);
     const self = this;
     window.changeBgcolor = function (val, tab) {
       self.changeBg(val, tab);
@@ -162,6 +169,7 @@ export default {
       window.location.href = this.tronScanUrl;
     },
     changeBg(type, tab) {
+      console.log(tab)
       this.isIndex = type;
       if (tab) {
         this.tab = tab;
