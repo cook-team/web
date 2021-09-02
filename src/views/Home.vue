@@ -70,14 +70,22 @@
 					<span style="font-size: 18px;color: rgb(50, 77, 86);font-weight:600">邀请好友</span><br>
 					<span style="font-size: 12px;color: rgb(50, 77, 86);margin-top: -10px;">邀请好友来挖矿你可以获得他收益10%的奖励</span>
 				</div>
+				<!-- 邀请链接 -->
+        <div class="copy_view">
+          <div class="copylinkView"  id="text">
+            {{refLink1}}
+          </div>
+          <div
+            ref="copy" 
+            data-clipboard-action="copy"
+            data-clipboard-target="#text"
+            @click="copyLink"
+            class="copyBtn"
+          >
+            复制链接
+          </div>
+        </div>
 				
-				<div class="copylinkView"  id="text">
-					{{refLink1}}
-				</div>
-				<div ref="copy" data-clipboard-action="copy" data-clipboard-target="#text" @click="copyLink"
-					class="copyBtn">
-					复制链接
-				</div>
 			</div>
 		</div>
 		
@@ -314,29 +322,31 @@
 		background:url('../assets/invite.png') no-repeat left center / 44px 44px
 	}
 	.copyBtn {
-		width: 140px;
-		height: 40px;
-		background: #FFFBF6;
-		border-radius: 5px;
-		border: 1px solid #CE3428;
+		width: 56px;
+		height: 34px;
 		color: #CE3428;
-		font-size: 16px;
-		line-height: 40px;
+		font-size: 14px;
+		line-height: 34px;
 		text-align: center;
-		margin: auto;
-		margin-top: 20px;
 	}
-	.copylinkView {
-		border-radius: 1px;
+  .copy_view {
+    border-radius: 1px;
 		height:34px;
 		line-height:34px;
 		border: 1px solid #ccc;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14px;
+    box-sizing: border-box;
+  }
+	.copylinkView {
 		overflow: hidden;
 		white-space: normal;
 		word-break: break-all;
 		font-size: 14px;
-		margin-top: 8px;
-		position: relative;
+    color: #333;
 	}
 	.copylinkView_hide {
 		position: absolute;
