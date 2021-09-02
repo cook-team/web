@@ -172,18 +172,21 @@
 		methods: {
       // 邀请链接绑定
       sureInvite() {
-        this.showInvite = false;
-        this.showDeposit = true
+        if(this.inviteCode) {
+          this.showInvite = false;
+          this.showDeposit = true;
+        }
       },
 			// 显示质押的输入的弹窗
 			showDepositdialog() {
-				// const data =  this.balance; // 因为测试 暂时注释了
-				// const res = data * 1;
-				// console.log(res)
-				// if(isNaN(res) || !res) {
-				// 	return
-				// }
-        if(true) {
+				const data =  this.balance; // 因为测试 暂时注释了
+				const res = data * 1;
+				console.log(res)
+				if(isNaN(res) || !res) {
+          alert('余额不足！')
+					return
+				}
+        if(!this.inviteCode) {
           this.showInvite = true;
           return
         }
@@ -282,7 +285,7 @@
 					try {
 						this.showLoading = true;
 						let amount = this.multiplication(this.depostAmount,pools.pools[this.$route.params.index].decimals);
-						var parent = localStorage.getItem('parent')
+						var parent = this.inviteCode;
 						if (!tronWeb.isAddress(parent)) {
 							parent = wordContent.inviteAddres;
 						}
@@ -494,7 +497,15 @@
 			        obj.push(arg);
 			        return obj;
 			    }, []);
-			}
+			},
+      // 获取上级地址
+      async getLeaderInfo(index) {
+        const poolAddress = await pools.pools[index].mine;
+        const contract  = await this.tronWeb.contract().at(poolAddress);
+        const data = await contract.getReferrer(tronWeb.defaultAddress.base58).call();
+        // this.inviteCode = data;
+        console.log('地址上级',data)
+      },
 		},
 		mounted() {
 			window.changeBgcolor && window.changeBgcolor(false) // 修改背景
@@ -525,7 +536,7 @@
 					// let data = '0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000b4a75737473776170205631000000000000000000000000000000000000000000';
 					// let result = await this.decodeParams(['string'], data, true)
 					// console.log(result)
-					
+					this.getLeaderInfo(this.$route.params.index)
 					
 					this.getData();
 					this.getEarned();

@@ -7,7 +7,7 @@
 				:key="index"
 				class="pool_card"
 			>
-				<div class="poolItemNumView"><p class="poolItemNum">{{index + 1}}号矿池{{`（产${pool.productName||''}）`}}</p></div>
+				<div class="poolItemNumView"><p class="poolItemNum">{{index + 1}}号矿池{{`【产${pool.productName||''}】`}}</p></div>
 				<div style="height:30px;"></div>
 				<div style="display:flex;justify-content: center;align-items: center;margin-bottom:18px">
 					<img :src="pool.pledgeImage" style="width:74px;height:74px;border-radius:54px;overflow:hidden;flex-shrink:0"  alt=""/>

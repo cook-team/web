@@ -54,7 +54,7 @@ var pools = {
     {
       name: '测试矿池',
       pledgeAddress: 'TVG6vbBjPx71YXhYXxcqc9frsDKfk2i9i2', //质押币地址
-      mine: 'TYegMum8P5pgREG4BsnNTdivBuqzpiGcsU', //池子地址^M
+      mine: 'TME7F8df1rVc2BkKcnUuSoQwvVPBs8TUg7', //池子地址^M
       productDecimal: 1e18, // 产出币的精度
       mineImage: '/img/trx.jpg',
       pledgeName: '测试cook', //质押币名称^M
