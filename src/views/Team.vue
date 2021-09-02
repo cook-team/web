@@ -37,7 +37,7 @@
 			return {
         poolList: pools.pools,
         tabIndex: 0,
-
+        
 			}
 		},
 		methods: {
@@ -45,6 +45,7 @@
         if(index!== this.tabIndex) {
           this.tabIndex = index;
           this.getTableInfo(index);
+          this.getLeaderInfo(index);
         }
       },
       //  获取推荐信息
@@ -53,14 +54,23 @@
         console.log('poolAddress',poolAddress)
         const contract  = await tronWeb.contract().at(poolAddress);
         console.log('contract',contract)
-        const data = contract.getRecommend(tronWeb.defaultAddress.base58);
+        const data = await contract.getReferralRewards(tronWeb.defaultAddress.base58).call();
+        console.log('数据',parseFloat(data/1e16).toFixed(8))
+      },
+      // 获取上级地址
+      async getLeaderInfo(index) {
+        const poolAddress = await pools.pools[index].mine;
+        console.log('poolAddress',poolAddress)
+        const contract  = await tronWeb.contract().at(poolAddress);
+        console.log('contract',contract)
+        const data = await contract.getReferrer(tronWeb.defaultAddress.base58).call();
         console.log('数据',data)
       }
     },
     mounted() {
       window.changeBgcolor && window.changeBgcolor(true,3) // 修改背景
 			window.changeHeader && window.changeHeader(true); // 显示header
-      this.getTableInfo(0);
+      this.getLeaderInfo(0);
     }
 	}
 </script>
