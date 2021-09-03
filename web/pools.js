@@ -1,17 +1,16 @@
 var pools = {
     logo: '/img/logo.b00e9a89.png',
-    domain: 'http://cook.tel', // 域名 
-    pointApi: 'http://cook.tel/api', //节点地址  正式： http://cook.vin/api  测试：http://cook.tel/api 
+    domain: 'http://cook.vin', // 域名
     produceCoin: 'TDJmWtVu4VeoepMpsaDzPd1ZtnKC7EbBNf',//产出币地址^M
     decimals: 1e6,
     produceCoinImage: '/img/cook.png',
     pools: [{
-        name: 'TRX-HJT LP一>TKB',
+        name: 'TRX-HJT LP-->TKB',
         pledgeAddress: 'TTPVhk7M94ZS81YNtFfS2JNB8a7gtVFXQL', //质押币地址
         mine: 'TEmbQqmMZ3c4y1WKgkNbuCkfT8hnYDKMpC', //池子地址^M
         productDecimal: 1e18, // 产出币的精度
         mineImage: '/img/trx.jpg',
-        pledgeName: 'TRX-HJT-LP', //质押币名称^M
+        pledgeName: 'TRX-HJT LP', //质押币名称^M
         productName: 'TKB',
         decimals: 1e6,
         pledgeImage: '/img/hjb.png', // 质押币图标
@@ -21,12 +20,12 @@ var pools = {
         endTime: '2021/09/20 23:00:00',  // 距离结束 年月日请尽量使用 '/'来隔开（2021/07/28），不然有可能ios端会无法解析格式
         startTime: '2021/08/21 23:00:00', // 开始时间
     }, {
-        name: 'TRX-COOK LP一>TKB',
+        name: 'TRX-COOK LP-->TKB',
         pledgeAddress: 'TDMdfhfrhcpBR5yHAi87NFLw3az4jgqsMU', //质押币地址
         mine: 'TCM35R6buiY8wTfXDSWdXBaWRWipPfZuaT', //池子地址^M
         productDecimal: 1e18, // 产出币的精度
         mineImage: '/img/trx.jpg',
-        pledgeName: 'TRX-COOK-LP', //质押币名称^M
+        pledgeName: 'TRX-COOK LP', //质押币名称^M
         productName: 'TKB',
         decimals: 1e6,
         pledgeImage: '/img/cook.png', // 质押币图标
@@ -36,12 +35,12 @@ var pools = {
         startTime: '2021/08/11 21:00:00', // 开始时间
         endTime: '2021/08/31 21:00:00',  // 距离结束 年月日请尽量使用 '/'来隔开（2021/07/28），不然有可能ios端会无法解析格式
     }, {
-        name: 'TRX-HXB LP一>TKB',
+        name: 'TRX-HXB LP-->TKB',
         pledgeAddress: 'TVG6vbBjPx71YXhYXxcqc9frsDKfk2i9i2', //质押币地址
         mine: 'TUEoreJkU28SbRz7dLBeWBYnwDXUJX3PFn', //池子地址^M
         productDecimal: 1e18, // 产出币的精度
         mineImage: '/img/trx.jpg',
-        pledgeName: 'TRX-HXB-LP', //质押币名称^M
+        pledgeName: 'TRX-HXB LP', //质押币名称^M
         productName: 'TKB',
         decimals: 1e6,
         pledgeImage: '/img/hxb.png', // 质押币图标
@@ -50,24 +49,7 @@ var pools = {
         total: 0, //总量
         startTime: '2021/08/11 22:00:00', // 开始时间
         endTime: '2021/09/10 22:00:00',  // 距离结束 年月日请尽量使用 '/'来隔开（2021/07/28），不然有可能ios端会无法解析格式
-    },
-    {
-      name: '测试矿池cook一>cook',
-      pledgeAddress: 'TDMdfhfrhcpBR5yHAi87NFLw3az4jgqsMU', //质押币地址
-      mine: 'TME7F8df1rVc2BkKcnUuSoQwvVPBs8TUg7', //池子地址^M
-      productDecimal: 1e6, // 产出币的精度
-      mineImage: '/img/trx.jpg',
-      pledgeName: 'Cook-test-LP', //质押币名称^M
-      productName: '测试cook',
-      decimals: 1e6,
-      pledgeImage: '/img/cook.png', // 质押币图标
-      productImage: '/img/cook.png', // 产出币的图片
-      stock: 0, // 余量
-      total: 0, //总量
-      startTime: '2021/08/11 22:00:00', // 开始时间
-      endTime: '2021/09/20 22:00:00',  // 距离结束 年月日请尽量使用 '/'来隔开（2021/07/28），不然有可能ios端会无法解析格式
-    }
-  ]
+    }]
 }
 
 // 文字以及其他配置内容
