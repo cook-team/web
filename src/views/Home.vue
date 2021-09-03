@@ -54,13 +54,13 @@
 						style="width: 50%;height: 100%;display: flex;flex-direction: column;justify-content: center;align-items: center;">
 						
 						<p style="font-size: 16px;font-weight: bold;">{{unfinishedIncome}}</p>
-						<p style="font-size:14px">待提取收益</p>
+						<p style="font-size:14px">挖矿收益</p>
 					</div>
 					<div
 						style="width: 50%;height: 100%;display: flex;flex-direction: column;justify-content: center;align-items: center;">
 						
 						<p style="font-size: 16px;font-weight: bold;">{{allRefReward}}</p>
-						<p style="font-size:14px">贡献奖励</p>
+						<p style="font-size:14px">推广奖励</p>
 					</div>
 				</div>
 			</div>
@@ -68,7 +68,7 @@
 			<div style="box-shadow: 0px 0px 10px rgba(152, 152, 152, 0.2);border-radius: 10px;margin-top: 30px;padding: 12px;overflow: hidden; border: 1px solid rgb(255, 255, 255);">
 				<div style="padding-left:64px;" class="inviteTitle">
 					<span style="font-size: 18px;color: rgb(50, 77, 86);font-weight:600">邀请好友</span><br>
-					<span style="font-size: 12px;color: rgb(50, 77, 86);margin-top: -10px;">邀请好友来挖矿你可以获得他收益10%的奖励</span>
+					<span style="font-size: 12px;color: rgb(50, 77, 86);margin-top: -10px;">邀请好友挖矿可以获得超高的挖矿奖励</span>
 				</div>
 				<!-- 邀请链接 -->
         <div class="copy_view">

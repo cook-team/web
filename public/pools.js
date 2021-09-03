@@ -11,7 +11,7 @@ var pools = {
         mine: 'TEmbQqmMZ3c4y1WKgkNbuCkfT8hnYDKMpC', //池子地址^M
         productDecimal: 1e18, // 产出币的精度
         mineImage: '/img/trx.jpg',
-        pledgeName: 'TRX-HJT LP', //质押币名称^M
+        pledgeName: 'TRX-HJT-LP', //质押币名称^M
         productName: 'TKB',
         decimals: 1e6,
         pledgeImage: '/img/hjb.png', // 质押币图标
@@ -26,7 +26,7 @@ var pools = {
         mine: 'TCM35R6buiY8wTfXDSWdXBaWRWipPfZuaT', //池子地址^M
         productDecimal: 1e18, // 产出币的精度
         mineImage: '/img/trx.jpg',
-        pledgeName: 'TRX-COOK LP', //质押币名称^M
+        pledgeName: 'TRX-COOK-LP', //质押币名称^M
         productName: 'TKB',
         decimals: 1e6,
         pledgeImage: '/img/cook.png', // 质押币图标
@@ -41,7 +41,7 @@ var pools = {
         mine: 'TUEoreJkU28SbRz7dLBeWBYnwDXUJX3PFn', //池子地址^M
         productDecimal: 1e18, // 产出币的精度
         mineImage: '/img/trx.jpg',
-        pledgeName: 'TRX-HXB LP', //质押币名称^M
+        pledgeName: 'TRX-HXB-LP', //质押币名称^M
         productName: 'TKB',
         decimals: 1e6,
         pledgeImage: '/img/hxb.png', // 质押币图标
@@ -52,12 +52,12 @@ var pools = {
         endTime: '2021/09/10 22:00:00',  // 距离结束 年月日请尽量使用 '/'来隔开（2021/07/28），不然有可能ios端会无法解析格式
     },
     {
-      name: '测试矿池cook——>cook',
-      pledgeAddress: 'TDMdfhfrhcpBR5yHAi87NFLw3az4jgqsMUTVG6vbBjPx71YXhYXxcqc9frsDKfk2i9i2', //质押币地址
+      name: '测试矿池cook一>cook',
+      pledgeAddress: 'TDMdfhfrhcpBR5yHAi87NFLw3az4jgqsMU', //质押币地址
       mine: 'TME7F8df1rVc2BkKcnUuSoQwvVPBs8TUg7', //池子地址^M
-      productDecimal: 1e18, // 产出币的精度
+      productDecimal: 1e6, // 产出币的精度
       mineImage: '/img/trx.jpg',
-      pledgeName: '测试cook', //质押币名称^M
+      pledgeName: 'Cook-test-LP', //质押币名称^M
       productName: '测试cook',
       decimals: 1e6,
       pledgeImage: '/img/cook.png', // 质押币图标
@@ -65,7 +65,7 @@ var pools = {
       stock: 0, // 余量
       total: 0, //总量
       startTime: '2021/08/11 22:00:00', // 开始时间
-      endTime: '2021/09/10 22:00:00',  // 距离结束 年月日请尽量使用 '/'来隔开（2021/07/28），不然有可能ios端会无法解析格式
+      endTime: '2021/09/20 22:00:00',  // 距离结束 年月日请尽量使用 '/'来隔开（2021/07/28），不然有可能ios端会无法解析格式
     }
   ]
 }

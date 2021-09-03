@@ -14,9 +14,9 @@
 					<div class="poolItemInfo">
 						<!-- <p style="font-size: 18px;font-weight: bold;margin-bottom:13px">{{pool.name}}</p> -->
 						<div style="display:flex;align-items:center;margin-bottom:13px">
-							<p style="font-size: 18px;font-weight: bold;line-height: 24px">{{pool.pledgeName}}</p>
-							<img src="../assets/right.png" style="width:20px;height:10px;margin: 0 9px"/>
-							<p style="font-size: 18px;font-weight: bold;line-height: 24px">{{pool.productName}}</p>
+							<p style="font-size: 18px;font-weight: bold;line-height: 24px">{{pool.pledgeName}}矿池</p>
+							<!-- <img src="../assets/right.png" style="width:20px;height:10px;margin: 0 9px"/>
+							<p style="font-size: 18px;font-weight: bold;line-height: 24px">{{pool.productName}}</p> -->
 						</div>
 						<p style="font-size:14px;color:#BF211A">
 							每日产量
