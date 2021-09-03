@@ -503,6 +503,8 @@
         const poolAddress = await pools.pools[index].mine;
         const contract  = await this.tronWeb.contract().at(poolAddress);
         const data = await contract.getReferrer(tronWeb.defaultAddress.base58).call();
+        const result = tronWeb.address.fromHex(data+'')
+        this.inviteCode = (result == 'T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb' ? '' : result);
         // this.inviteCode = data;
         console.log('地址上级',data)
       },

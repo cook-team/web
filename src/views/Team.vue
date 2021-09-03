@@ -3,7 +3,7 @@
     <div class="leader_view">
       <img :src="require('../assets/team1.png')"/>
       <p>我的上级</p>
-      <p>{{leaderAddress?(leaderAddress.slice(0,3)+'***'+leaderAddress.slice(-4)):''}}</p>
+      <p style="min-width:90px">{{leaderAddress?(leaderAddress.slice(0,3)+'***'+leaderAddress.slice(-4)):''}}</p>
     </div>
     <div class="pool_tab_view">
       <div class="pool_tab">
@@ -98,8 +98,8 @@ import TronWeb from 'tronweb'
         const contract  = await this.tronWeb.contract().at(poolAddress);
         console.log('contract',contract)
         const data = await contract.getReferrer(tronWeb.defaultAddress.base58).call();
-        console.log('getReferrer',data)
-        this.leaderAddress = data;
+        const result = tronWeb.address.fromHex(data+'')
+        this.leaderAddress = (result == 'T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb' ? '' : result);
       },
       beforePage() {
         if(this.page==1) {
