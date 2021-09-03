@@ -54,13 +54,13 @@
 						style="width: 50%;height: 100%;display: flex;flex-direction: column;justify-content: center;align-items: center;">
 						
 						<p style="font-size: 16px;font-weight: bold;">{{unfinishedIncome}}</p>
-						<p style="font-size:14px">待提取收益</p>
+						<p style="font-size:14px">挖矿收益</p>
 					</div>
 					<div
 						style="width: 50%;height: 100%;display: flex;flex-direction: column;justify-content: center;align-items: center;">
 						
 						<p style="font-size: 16px;font-weight: bold;">{{allRefReward}}</p>
-						<p style="font-size:14px">贡献奖励</p>
+						<p style="font-size:14px">推广奖励</p>
 					</div>
 				</div>
 			</div>
@@ -68,16 +68,24 @@
 			<div style="box-shadow: 0px 0px 10px rgba(152, 152, 152, 0.2);border-radius: 10px;margin-top: 30px;padding: 12px;overflow: hidden; border: 1px solid rgb(255, 255, 255);">
 				<div style="padding-left:64px;" class="inviteTitle">
 					<span style="font-size: 18px;color: rgb(50, 77, 86);font-weight:600">邀请好友</span><br>
-					<span style="font-size: 12px;color: rgb(50, 77, 86);margin-top: -10px;">邀请好友来挖矿你可以获得他收益10%的奖励</span>
+					<span style="font-size: 12px;color: rgb(50, 77, 86);margin-top: -10px;">邀请好友挖矿可以获得超高的挖矿奖励</span>
 				</div>
+				<!-- 邀请链接 -->
+        <div class="copy_view">
+          <div class="copylinkView"  id="text">
+            {{refLink1}}
+          </div>
+          <div
+            ref="copy" 
+            data-clipboard-action="copy"
+            data-clipboard-target="#text"
+            @click="copyLink"
+            class="copyBtn"
+          >
+            复制链接
+          </div>
+        </div>
 				
-				<div class="copylinkView"  id="text">
-					{{refLink1}}
-				</div>
-				<div ref="copy" data-clipboard-action="copy" data-clipboard-target="#text" @click="copyLink"
-					class="copyBtn">
-					复制链接
-				</div>
 			</div>
 		</div>
 		
@@ -136,9 +144,9 @@
 					// tronWeb.setHeader({"TRON-PRO-API-KEY": '0d54d84d-70f6-49b5-bd0c-83a286592f88'});
 					this.tronWeb = new TronWeb({
 						// fullHost: 'http://210.56.55.28:41752/wallet/getnowblock', // 另外一个地址
-						fullHost: pools.pointApi, // 正式环境
-						// fullHost: 'https://api.trongrid.io', //测试环境
-						// headers: { "TRON-PRO-API-KEY": 'd0ca3dfb-5123-4f1d-bf45-22f949388042' },//测试环境
+						// fullHost: pools.pointApi, // 正式环境
+						fullHost: 'https://api.trongrid.io', //测试环境
+						headers: { "TRON-PRO-API-KEY": 'd0ca3dfb-5123-4f1d-bf45-22f949388042' },//测试环境
 					})
 					this.tronWeb.setAddress(tronWeb.defaultAddress.base58);
 					
@@ -314,29 +322,31 @@
 		background:url('../assets/invite.png') no-repeat left center / 44px 44px
 	}
 	.copyBtn {
-		width: 140px;
-		height: 40px;
-		background: #FFFBF6;
-		border-radius: 5px;
-		border: 1px solid #CE3428;
+		width: 56px;
+		height: 34px;
 		color: #CE3428;
-		font-size: 16px;
-		line-height: 40px;
+		font-size: 14px;
+		line-height: 34px;
 		text-align: center;
-		margin: auto;
-		margin-top: 20px;
 	}
-	.copylinkView {
-		border-radius: 1px;
+  .copy_view {
+    border-radius: 1px;
 		height:34px;
 		line-height:34px;
 		border: 1px solid #ccc;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14px;
+    box-sizing: border-box;
+  }
+	.copylinkView {
 		overflow: hidden;
 		white-space: normal;
 		word-break: break-all;
 		font-size: 14px;
-		margin-top: 8px;
-		position: relative;
+    color: #333;
 	}
 	.copylinkView_hide {
 		position: absolute;

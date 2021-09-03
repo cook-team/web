@@ -7,16 +7,16 @@
 				:key="index"
 				class="pool_card"
 			>
-				<div class="poolItemNumView"><p class="poolItemNum">{{index + 1}}号矿池{{`（产${pool.productName||''}）`}}</p></div>
+				<div class="poolItemNumView"><p class="poolItemNum">{{index + 1}}号矿池{{`【产${pool.productName||''}】`}}</p></div>
 				<div style="height:30px;"></div>
 				<div style="display:flex;justify-content: center;align-items: center;margin-bottom:18px">
 					<img :src="pool.pledgeImage" style="width:74px;height:74px;border-radius:54px;overflow:hidden;flex-shrink:0"  alt=""/>
 					<div class="poolItemInfo">
 						<!-- <p style="font-size: 18px;font-weight: bold;margin-bottom:13px">{{pool.name}}</p> -->
 						<div style="display:flex;align-items:center;margin-bottom:13px">
-							<p style="font-size: 18px;font-weight: bold;line-height: 24px">{{pool.pledgeName}}</p>
-							<img src="../assets/right.png" style="width:20px;height:10px;margin: 0 9px"/>
-							<p style="font-size: 18px;font-weight: bold;line-height: 24px">{{pool.productName}}</p>
+							<p style="font-size: 18px;font-weight: bold;line-height: 24px">{{pool.pledgeName}}矿池</p>
+							<!-- <img src="../assets/right.png" style="width:20px;height:10px;margin: 0 9px"/>
+							<p style="font-size: 18px;font-weight: bold;line-height: 24px">{{pool.productName}}</p> -->
 						</div>
 						<p style="font-size:14px;color:#BF211A">
 							每日产量
