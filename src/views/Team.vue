@@ -96,7 +96,9 @@ import TronWeb from 'tronweb'
       async getLeaderInfo(index) {
         const poolAddress = await pools.pools[index].mine;
         const contract  = await this.tronWeb.contract().at(poolAddress);
+        console.log('contract',contract)
         const data = await contract.getReferrer(tronWeb.defaultAddress.base58).call();
+        console.log('getReferrer',data)
         this.leaderAddress = data;
       },
       beforePage() {
