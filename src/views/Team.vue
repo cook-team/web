@@ -62,34 +62,44 @@ import TronWeb from 'tronweb'
           this.next = true;
         }
       },
+      computeSun(value,decimal) {
+        let res = parseFloat(value / decimal).toFixed(15);
+        res = res.substring(0,res.lastIndexOf('.')+5) 
+        return res
+      },
       //  获取推荐信息
       async getTableInfo(index) {
-        const poolAddress = await pools.pools[index].mine;
+        const poolAddress =  pools.pools[index].mine;
+        const decimals  =  pools.pools[index].decimals;
         const contract  = await this.tronWeb.contract().at(poolAddress);
         const data = await contract.getRecommend(tronWeb.defaultAddress.base58,this.page).call();
         const pageSum = (data[3]*1).toFixed(0); // 当前页的条数
         const tableSum = (data[4]*1).toFixed(0) // 总条数
-        console.log('@@@',tableSum)
-        if(!!tableSum) {
+        console.log(pageSum,tableSum)
+        if(!(tableSum*1)) {
           this.table = [];
           return 
         }
-        if(!!pageSum) { // 下一页没有数据的情况
+        if(!(pageSum*1)) { // 下一页没有数据的情况
           alert('已经到最后一页了！')
           this.page = this.page - 1;
           return 
         }
         if(pageSum < 10) {
           this.next = false;
-          
         }
-        const list = data[0].map((item,index)=>{
-          return {
-            address: item,
-            JJpush: (data[1][index]*1).toFixed(0),
-            ZYsun: (data[2][index]*1).toFixed(0)
+        console.log(5555555555)
+        const list = data[0].reduce((acc,item,index)=>{
+          if(tronWeb.address.fromHex(item+'') != 'T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb') {
+            acc.push({
+              address: tronWeb.address.fromHex(item+''),
+              JJpush: (data[1][index]*1).toFixed(0),
+              ZYsun: this.computeSun(data[2][index],decimals)
+            })
           }
-        });
+          return acc
+        },[]);
+        console.log(list)
         this.table = list;
       },
       // 获取上级地址
@@ -125,9 +135,9 @@ import TronWeb from 'tronweb'
 			window.changeHeader && window.changeHeader(true); // 显示header
       if (typeof tronWeb !== 'undefined') { 
         this.tronWeb = new TronWeb({
-          fullHost: pools.pointApi, // 正式环境
-          // fullHost: 'https://api.trongrid.io', //测试环境
-          // headers: { "TRON-PRO-API-KEY": 'd0ca3dfb-5123-4f1d-bf45-22f949388042' },//测试环境
+          // fullHost: pools.pointApi, // 正式环境
+          fullHost: 'https://api.trongrid.io', //测试环境
+          headers: { "TRON-PRO-API-KEY": 'd0ca3dfb-5123-4f1d-bf45-22f949388042' },//测试环境
         })
         this.tronWeb.setAddress(tronWeb.defaultAddress.base58);
         this.$nextTick(()=>{
@@ -236,9 +246,9 @@ import TronWeb from 'tronweb'
     height: 54px;
     border-bottom: 1px solid #CCCCCC;
   }
-  .table_item:last-child {
+  /* .table_item:last-child {
     border-bottom: none;
-  }
+  } */
   .itemtxt {
     font-weight: bold;
     font-size: 14px;
