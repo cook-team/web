@@ -2,7 +2,7 @@
   <div id="app" :class="isIndex ? 'bodybg1' : 'bodybg2'">
     <div style="width: 100%" v-show="showHeader">
       <div class="head">
-        <div style="width:20px"></div>
+        <div style="width:2px"></div>
         <div
           @click="goIndex('/')"
           class="item"

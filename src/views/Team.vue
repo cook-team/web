@@ -112,7 +112,7 @@ import TronWeb from 'tronweb'
         this.leaderAddress = (result == 'T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb' ? '' : result);
       },
       beforePage() {
-        if(this.page==1) {
+        if(this.page<1) {
           return 
         }
         this.page = this.page - 1;
