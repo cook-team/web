@@ -135,9 +135,9 @@ import TronWeb from 'tronweb'
 			window.changeHeader && window.changeHeader(true); // 显示header
       if (typeof tronWeb !== 'undefined') { 
         this.tronWeb = new TronWeb({
-          // fullHost: pools.pointApi, // 正式环境
-          fullHost: 'https://api.trongrid.io', //测试环境
-          headers: { "TRON-PRO-API-KEY": 'd0ca3dfb-5123-4f1d-bf45-22f949388042' },//测试环境
+          fullHost: pools.pointApi, // 正式环境
+          // fullHost: 'https://api.trongrid.io', //测试环境
+          // headers: { "TRON-PRO-API-KEY": 'd0ca3dfb-5123-4f1d-bf45-22f949388042' },//测试环境
         })
         this.tronWeb.setAddress(tronWeb.defaultAddress.base58);
         this.$nextTick(()=>{
