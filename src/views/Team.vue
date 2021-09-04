@@ -3,7 +3,7 @@
     <div class="leader_view">
       <img :src="require('../assets/team1.png')"/>
       <p>我的上级</p>
-      <p>ADD***DS8F</p>
+      <p style="min-width:90px">{{leaderAddress?(leaderAddress.slice(0,3)+'***'+leaderAddress.slice(-4)):''}}</p>
     </div>
     <div class="pool_tab_view">
       <div class="pool_tab">
@@ -12,32 +12,43 @@
         </div>
       </div>
     </div>
-    <div class="table_view">
+    <div class="table_view" :style="{height: windowH }">
       <div class="table">
         <div class="table_title">
           <p class="width103 titletxt">我的直推</p>
           <p class="flex1 titletxt marginLR">我的间推</p>
           <p class="flex1 titletxt">团队质押量</p>
         </div>
-        <div class="table_title table_item" v-for="(item,key) in poolList" :key="key">
-          <p class="width103 userinfo">TA5***GCY9</p>
-          <p class="flex1 itemtxt">2</p>
-          <p class="flex1 itemtxt">22</p>
+        <p v-if="table.length==0" class="notData">暂无数据</p>
+        <div v-else class="table_title table_item" v-for="(item,key) in table" :key="key">
+          <p class="width103 userinfo">{{item.address.slice(0,3)+'***'+item.address.slice(-4)}}</p>
+          <p class="flex1 itemtxt">{{item.JJpush}}</p>
+          <p class="flex1 itemtxt">{{item.ZYsun}}</p>
         </div>
       </div>
     </div>
-    <div style="height:30px"></div>
+    <div class="footer">
+      <p @click="beforePage">上一页</p>
+      <p>第{{this.page + 1}}页</p>
+      <p @click="nextPage">下一页</p>
+    </div>
 	</div>
 </template>
 
 <script>
+import TronWeb from 'tronweb'
 	export default {
 		name: 'Pools',
 		data() {
 			return {
+        windowH: window.innerHeight - 190 - 60 + 'px',
         poolList: pools.pools,
+        leaderAddress: '',
         tabIndex: 0,
-
+        page: 0,
+        table: [],
+        next: true,
+        tronWeb: {},
 			}
 		},
 		methods: {
@@ -45,22 +56,95 @@
         if(index!== this.tabIndex) {
           this.tabIndex = index;
           this.getTableInfo(index);
+          this.getLeaderInfo(index);
+          this.page = 0;
+          this.table = [];
+          this.next = true;
         }
+      },
+      computeSun(value,decimal) {
+        let res = parseFloat(value / decimal).toFixed(15);
+        res = res.substring(0,res.lastIndexOf('.')+5) 
+        return res
       },
       //  获取推荐信息
       async getTableInfo(index) {
+        const poolAddress =  pools.pools[index].mine;
+        const decimals  =  pools.pools[index].decimals;
+        const contract  = await this.tronWeb.contract().at(poolAddress);
+        const data = await contract.getRecommend(tronWeb.defaultAddress.base58,this.page).call();
+        const pageSum = (data[3]*1).toFixed(0); // 当前页的条数
+        const tableSum = (data[4]*1).toFixed(0) // 总条数
+        console.log(pageSum,tableSum)
+        if(!(tableSum*1)) {
+          this.table = [];
+          return 
+        }
+        if(!(pageSum*1)) { // 下一页没有数据的情况
+          alert('已经到最后一页了！')
+          this.page = this.page - 1;
+          return 
+        }
+        if(pageSum < 10) {
+          this.next = false;
+        }
+        console.log(5555555555)
+        const list = data[0].reduce((acc,item,index)=>{
+          if(tronWeb.address.fromHex(item+'') != 'T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb') {
+            acc.push({
+              address: tronWeb.address.fromHex(item+''),
+              JJpush: (data[1][index]*1).toFixed(0),
+              ZYsun: this.computeSun(data[2][index],decimals)
+            })
+          }
+          return acc
+        },[]);
+        console.log(list)
+        this.table = list;
+      },
+      // 获取上级地址
+      async getLeaderInfo(index) {
         const poolAddress = await pools.pools[index].mine;
-        console.log('poolAddress',poolAddress)
-        const contract  = await tronWeb.contract().at(poolAddress);
+        const contract  = await this.tronWeb.contract().at(poolAddress);
         console.log('contract',contract)
-        const data = contract.getRecommend(tronWeb.defaultAddress.base58);
-        console.log('数据',data)
-      }
+        const data = await contract.getReferrer(tronWeb.defaultAddress.base58).call();
+        const result = tronWeb.address.fromHex(data+'')
+        this.leaderAddress = (result == 'T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb' ? '' : result);
+      },
+      beforePage() {
+        if(this.page<1) {
+          return 
+        }
+        this.page = this.page - 1;
+        this.getTableInfo(this.tabIndex);
+      },
+      nextPage() {
+        if(this.table.length == 0) {
+          return 
+        }
+        if(!this.next) {
+          return 
+        }
+        this.page = this.page + 1;
+        this.getTableInfo(this.tabIndex);
+      },
     },
+
     mounted() {
       window.changeBgcolor && window.changeBgcolor(true,3) // 修改背景
 			window.changeHeader && window.changeHeader(true); // 显示header
-      this.getTableInfo(0);
+      if (typeof tronWeb !== 'undefined') { 
+        this.tronWeb = new TronWeb({
+          fullHost: pools.pointApi, // 正式环境
+          // fullHost: 'https://api.trongrid.io', //测试环境
+          // headers: { "TRON-PRO-API-KEY": 'd0ca3dfb-5123-4f1d-bf45-22f949388042' },//测试环境
+        })
+        this.tronWeb.setAddress(tronWeb.defaultAddress.base58);
+        this.$nextTick(()=>{
+          this.getTableInfo(this.tabIndex);
+          this.getLeaderInfo(this.tabIndex);
+        })
+      }
     }
 	}
 </script>
@@ -120,10 +204,12 @@
     width: 100%;
     padding: 0 15px;
     box-sizing: border-box;
+    overflow: auto;
+    padding-bottom: 15px;
   }
   .table {
     width: 100%;
-    height: auto;
+    min-height: 100%;
     background: #FFFFFF;
     box-shadow: 0px 0px 10px rgba(136, 136, 136, 0.25);
     opacity: 1;
@@ -160,9 +246,9 @@
     height: 54px;
     border-bottom: 1px solid #CCCCCC;
   }
-  .table_item:last-child {
+  /* .table_item:last-child {
     border-bottom: none;
-  }
+  } */
   .itemtxt {
     font-weight: bold;
     font-size: 14px;
@@ -192,5 +278,29 @@
   .leader_view p:last-child {
     font-weight: bold;
     margin-left: 11px;
+  }
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 100%;
+  }
+  .footer p {
+    font-size: 14px;
+    color: #333;
+  }
+  .footer p:nth-child(2) {
+    color: #C3261D;
+    margin: 0 30px;
+    font-size: 13px;
+  }
+  .notData {
+    width: 100%;
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+    font-size: 14px;
+    color: #999;
   }
 </style>
