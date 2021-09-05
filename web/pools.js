@@ -67,7 +67,22 @@ var pools = {
       startTime: '2021/09/2 23:59:59', // 开始时间
       endTime: '2021/09/4 23:59:59',  // 距离结束 年月日请尽量使用 '/'来隔开（2021/07/28），不然有可能ios端会无法解析格式
     },
-    
+    {
+      name: 'TRX~EOT-LP一>TKB',
+      pledgeAddress: 'TDwYYJsaJviThgN6GecPE4CC6UshxsHHak', //质押币地址
+      mine: 'THotLrCogHysh2hkr5syB9k8tytBvq4gcd', //池子地址^M
+      productDecimal: 1e18, // 产出币的精度
+      mineImage: '/img/trx.jpg',
+      pledgeName: 'TRX~EOT-LP', //质押币名称^M
+      productName: 'TKB',
+      decimals: 1e18,
+      pledgeImage: '/img/eot.png', // 质押币图标
+      productImage: '/img/tbk.png', // 产出币的图片
+      stock: 0, // 余量
+      total: 0, //总量
+      startTime: '2021/09/5 20:00:00', // 开始时间
+      endTime: '2021/09/15 20:00:00',  // 距离结束 年月日请尽量使用 '/'来隔开（2021/07/28），不然有可能ios端会无法解析格式
+    },
   ]
 }
 
