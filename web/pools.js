@@ -44,7 +44,7 @@ var pools = {
       mineImage: '/img/trx.jpg',
       pledgeName: 'TRX~EOT-LP', //质押币名称^M
       productName: 'TKB',
-      decimals: 1e18,
+      decimals: 1e6,
       pledgeImage: '/img/eot.png', // 质押币图标
       productImage: '/img/tbk.png', // 产出币的图片
       stock: 0, // 余量
