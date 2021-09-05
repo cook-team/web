@@ -1,7 +1,7 @@
 var pools = {
     logo: '/img/logo.b00e9a89.png',
-    domain: 'http://cook.surf', // 域名 
-    pointApi: 'http://cook.surf/api', //节点地址  正式： http://cook.vin/api  测试：http://cook.tel/api 
+    domain: 'http://test.cook.surf', // 域名 
+    pointApi: 'http://test.cook.surf/api', //节点地址  正式： http://cook.vin/api  测试：http://cook.tel/api 
     produceCoin: 'TDJmWtVu4VeoepMpsaDzPd1ZtnKC7EbBNf',//产出币地址^M
     decimals: 1e6,
     produceCoinImage: '/img/cook.png',
