@@ -52,6 +52,22 @@ var pools = {
       startTime: '2021/09/5 20:00:00', // 开始时间
       endTime: '2021/09/15 20:00:00',  // 距离结束 年月日请尽量使用 '/'来隔开（2021/07/28），不然有可能ios端会无法解析格式
     },
+    {
+      name: 'TRX~TKB-LP一>COOK',
+      pledgeAddress: 'TYaPyCw45RTzaP7xGeqJh3uJPyGggQ4TB1', //质押币地址
+      mine: 'TJ45kNZLFxofPE2jBpdwzCEwRm2NwKwvLs', //池子地址^M
+      productDecimal: 1e6, // 产出币的精度
+      mineImage: '/img/trx.jpg',
+      pledgeName: 'TRX~TKB-LP', //质押币名称^M
+      productName: 'COOK',
+      decimals: 1e6,
+      pledgeImage: '/img/tbk.png', // 质押币图标
+      productImage: '/img/cook.png', // 产出币的图片
+      stock: 0, // 余量
+      total: 0, //总量
+      startTime: '2021/09/6 22:00:00', // 开始时间
+      endTime: '2021/09/16 22:00:00',  // 距离结束 年月日请尽量使用 '/'来隔开（2021/07/28），不然有可能ios端会无法解析格式
+    },
   ]
 }
 
