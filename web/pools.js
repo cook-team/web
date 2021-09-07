@@ -12,7 +12,7 @@ var pools = {
           mine: 'TFPtUGMjE8UXTpnpQUxHNE1Na5tiChgVCR', //池子地址^M
           productDecimal: 1e6, // 产出币的精度
           mineImage: '/img/trx.jpg',
-          pledgeName: 'COOK-LP官方矿池', //质押币名称^M
+          pledgeName: 'COOK-LP官方', //质押币名称^M
           productName: 'COOK',
           decimals: 1e6,
           pledgeImage: '/img/cook.png', // 质押币图标
