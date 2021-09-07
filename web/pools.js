@@ -5,7 +5,24 @@ var pools = {
     produceCoin: 'TDJmWtVu4VeoepMpsaDzPd1ZtnKC7EbBNf',//产出币地址^M
     decimals: 1e6,
     produceCoinImage: '/img/cook.png',
-    pools: [{
+    pools: [
+        {
+          name: 'TRX~COOK-LP一>COOK',
+          pledgeAddress: 'TDMdfhfrhcpBR5yHAi87NFLw3az4jgqsMU', //质押币地址
+          mine: 'TFPtUGMjE8UXTpnpQUxHNE1Na5tiChgVCR', //池子地址^M
+          productDecimal: 1e6, // 产出币的精度
+          mineImage: '/img/trx.jpg',
+          pledgeName: 'COOK-LP官方矿池', //质押币名称^M
+          productName: 'COOK',
+          decimals: 1e6,
+          pledgeImage: '/img/cook.png', // 质押币图标
+          productImage: '/img/cook.png', // 产出币的图片
+          stock: 0, // 余量
+          total: 0, //总量
+          startTime: '2021/09/7 20:50:00', // 开始时间
+          endTime: '2021/09/17 20:50:00',  // 距离结束 年月日请尽量使用 '/'来隔开（2021/07/28），不然有可能ios端会无法解析格式
+        },
+        {
         name: 'TRX~HJT-LP一>TKB',
         pledgeAddress: 'TTPVhk7M94ZS81YNtFfS2JNB8a7gtVFXQL', //质押币地址
         mine: 'TEmbQqmMZ3c4y1WKgkNbuCkfT8hnYDKMpC', //池子地址^M
